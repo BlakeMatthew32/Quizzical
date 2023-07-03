@@ -21,9 +21,9 @@
 }
 
 body {
+  height: 100vh;
   background-color: #F5F7FB;
   position: relative;
-  z-index: -1;
 }
 
 body::before {
@@ -37,6 +37,7 @@ body::before {
   background-color: #FFFAD1;
   border-radius: 0 0 150px 60px;
   box-shadow: 1px 1px 5px 1px rgba(125, 125, 125, 0.18);
+  z-index: 1;
 }
 
 body::after {

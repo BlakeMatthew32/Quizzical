@@ -1,10 +1,10 @@
 
 // import './src/App.css'
 
-function Questions() {
+function Questions({ questionElements }) {
     return (
         <div className="questions--container">
-            some questions here
+            {...questionElements}
         </div>
     )
 }

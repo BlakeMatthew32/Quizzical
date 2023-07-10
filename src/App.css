@@ -45,8 +45,26 @@
   z-index: 2;
 }
 
+.question {
+  margin-top: 1em;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked+label {
+  background-color: green;
+}
+
+.form--btn {
+  margin: 0 auto;
+}
+
+/* utilities */
 
 .btn {
+  display: inline-block;
   cursor: pointer;
   font-family: inherit;
   font-size: 1rem;

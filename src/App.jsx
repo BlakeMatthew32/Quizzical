@@ -13,33 +13,12 @@ function App() {
 
   useEffect(() => {
     // getQuestions()
-    fetch('https://opentdb.com/api.php?amount=5&category=9&type=multiple')
+    fetch('https://opentdb.com/api.php?amount=5&category=18&type=multiple')
       .then(res => res.json())
       .then(data => setQuestions(data.results))
   }, [startQuiz])
 
-  const questionsElements = questions.map(questionElm => {
-    const { question, incorrect_answers, correct_answer } = questionElm
-    const answers = [...incorrect_answers]
-    const randomIndex = Math.floor(Math.random() * answers.length + 1)
-    answers.splice(randomIndex, 0, correct_answer)
-
-    
-    console.log(answers)
-
-    return (
-      <div className='question'>
-        <h2>{question}</h2>
-        <div className='answers--container'>
-          <button className='btn btn-clear'>{answers[0]}</button>
-          <button className='btn btn-clear'>{answers[1]}</button>
-          <button className='btn btn-clear'>{answers[2]}</button>
-          <button className='btn btn-clear'>{answers[3]}</button>
-        </div>
-        <hr />
-      </div>
-    )
-  })
+  
 
   function handleStartQuiz() {
     console.log('started')
@@ -49,7 +28,8 @@ function App() {
   return (
     <>
       {startQuiz ? 
-        <Questions questionElements={questionsElements} /> : 
+        <Questions questions={questions} />
+         : 
         <LandingPage startQuiz={handleStartQuiz}/>
       }
       

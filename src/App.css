@@ -35,8 +35,8 @@
 
 
 /* questions styles */
+
 .questions--container{
-  height: 100vh;
   display: flex;
   flex-direction: column;
   color: #293264;
@@ -79,7 +79,7 @@ input[type="radio"]:checked+label {
   border: none;
 }
 
-.btn-clear{
+.btn-clear {
   padding-top: .2em;
   padding-bottom: .2em;
   margin-bottom: 2em;
@@ -88,5 +88,10 @@ input[type="radio"]:checked+label {
   background-color: transparent;
   color: inherit;
   border: 1px solid #293264;
+}
+
+.btn-selected {
+  border: 3px solid yellowgreen;
+  background-color: red;
 }
 

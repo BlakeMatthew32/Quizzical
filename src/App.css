@@ -91,7 +91,14 @@ input[type="radio"]:checked+label {
 }
 
 .btn-selected {
-  border: 3px solid yellowgreen;
-  background-color: red;
+  border: 3px solid #4D5B9E;
+}
+
+.btn-incorrect {
+  border: 3px solid red;
+}
+
+.btn-correct {
+  border: 3px solid green;
 }
 

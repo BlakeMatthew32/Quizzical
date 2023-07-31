@@ -1,26 +1,27 @@
 
 import he from 'he'
+import { nanoid } from "nanoid"
 
+import setClassNames from './setClassNames'
 import '../App.css'
 
-function getQuestionElements(questions, handleClick) {
+function getQuestionElements(questions, showAnswers, handleClick) {
 
     return questions.map((element, index) => {
-        const {question, answers, correctAnwer, selected} = element
+        const {question, answers, correctAnswer, selected} = element
         // console.log(answers)
 
         const answerElements = answers.map(answer => {
             const decodedAnswer = he.decode(answer)
-            console.log(answer === selected)
-            console.log('here')
+
+            const classNames = setClassNames(decodedAnswer, selected, showAnswers, correctAnswer)
+            
             return (
                 <button 
+                    key={nanoid(10)}
                     name={index}
                     value={decodedAnswer} 
-                    className={answer === selected ?
-                        "btn btn-clear btn-selected" :
-                        "btn btn-clear" 
-                    }
+                    className={classNames}
                     onClick={event => handleClick(event, decodedAnswer)}>
                         {decodedAnswer}
                 </button>
@@ -28,7 +29,7 @@ function getQuestionElements(questions, handleClick) {
         })
 
         return (
-            <div className="question">
+            <div className="question" key={nanoid(10)}>
                 <h2>{question}</h2>
                 <div className="answers">
                     {...answerElements}

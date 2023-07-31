@@ -7,6 +7,12 @@ import '../../App.css'
 
 function Questions({ startQuiz }) {
 
+  let questionElements
+
+  const [showAnswers, setShowAnswers] = useState(false)
+
+  const [numCorrect, setNumCorrect] = useState(0)
+
   const [questions, setQuestions] = useState([
       {
         question: '',
@@ -63,30 +69,34 @@ function Questions({ startQuiz }) {
 
   function handleClick(event, decodedAnswer) {
     const {name, value} = event.target
-    console.log(event.target)
     setQuestions(prev => {
-      console.log(name)
-      prev.splice(name, 1, {
-        ...prev[name],
+      const newQuestions = [...prev]
+      newQuestions.splice(name, 1, {
+        ...newQuestions[name],
         selected: value
       })
-      console.log(prev)
-      return prev
+      return newQuestions
     })
   }
 
-  const questionElements = getQuestionElements(questions, handleClick)
+  questionElements = getQuestionElements(questions, showAnswers, handleClick)
 
-  function submitAnswers(event) {
+  function toggleAnswers(event) {
       event.preventDefault()
-      console.log(answers)
+      setNumCorrect(questions.filter(question => question.correctAnswer === question.selected).length)
+      console.log(numCorrect)
+      setShowAnswers(true)
   }
-  console.log(questions)
 
   return (
     <div className="questions--container">
       {questionElements}
-      <button className="btn btn-filled form--btn">Check Answers</button>
+      <button className="btn btn-filled form--btn" onClick={toggleAnswers}>Check Answers</button>
+      {showAnswers && 
+        <p>
+          You Got {numCorrect} out of 5 Right!
+        </p>
+      }
     </div>
   )
 }
